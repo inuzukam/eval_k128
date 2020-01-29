@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="dmos.js"></script>
+        <title>DMOS</title>
+    </head>
+
+    <body onload="init()">
+        
+        <!-- 注意書きなど -->
+        <div style="border:1px solid #000000; padding: 10px; border-radius: 0px; background: ##ffffff;">
+            
+                <p>
+                    <h1>評価実験（音響データの類似度の評価）</h1>
+    
+                    評価実験にご協力いただきまして、誠にありがとうございます。<br>
+                    評価の手順を説明します。
+                    <h2>評価手順</h2>
+                    <ol type='i'>
+                        <li>はじめに「参照音」を聴く。</li>
+                        <li>その次に「評価音」を聴く。</li>
+                        <li>「参照音」と「評価音」を聴き比べて、以下の2点について評価し，選択肢から選ぶ．
+                            <ol>
+                                <li>音が発生するタイミングが一致しているかどうか．</li>
+                                音色が異なっていても，音の大小のタイミングが一致しているか．
+                                <li>各時刻において，同じ音色の音が発生しているかどうか．</li>
+                                発生している音の種類が元の音と同じ種類に聞こえるか．
+                            </ol>
+                            各音響データのラベルは，どのような音が聞こえるのかの参考にしてください．
+                        </li>
+                        <li>「次へ」ボタンを押し、次の音響データの評価を行う。</li>
+                        <li>すべての評価が終了したら、「終了」ボタンを押し、評価結果（CSVファイル）をダウンロードする。</li>
+                    </ol>
+                    <h2>注意事項</h2>
+                    <ul>
+                        <li>ノイズの大きいデータが存在するため，音量にはご注意ください。</li>
+                        <li>静かな部屋で、ヘッドホン（推奨）またはイヤホンを使用して評価を行ってください。</li>
+                        <li>評価の基準は自分のものでかまいません。</li>
+                        <li>ページを更新すると、今までの評価がすべてやり直しになってしまうので注意してください。</li>
+                        <li>不明な点などありましたら、Slackなどで遠慮なくご連絡お願いします。</li>
+                    </ul>
+                </p>
+    
+            </div>     
+
+        <p id="page"></p>
+
+        <p id="label"></p>
+
+        <p id="ref"></p>
+        <p id="sub"></p>
+
+        <ol>
+            <li>音が発生したタイミングについて</li>
+            <p>
+                <label><input type="radio" name="eval1" onclick="evaluation1()">1: 非常に遠い</label><br>
+                <label><input type="radio" name="eval1" onclick="evaluation1()">2: 遠い</label><br>
+                <label><input type="radio" name="eval1" onclick="evaluation1()">3: 普通</label><br>
+                <label><input type="radio" name="eval1" onclick="evaluation1()">4: 近い</label><br>
+                <label><input type="radio" name="eval1" onclick="evaluation1()">5: 非常に近い</label>
+            </p>
+
+            <li>発生した音の音色について</li>
+            <p> 
+                <label><input type="radio" name="eval2" onclick="evaluation2()">1: 非常に遠い</label><br>
+                <label><input type="radio" name="eval2" onclick="evaluation2()">2: 遠い</label><br>
+                <label><input type="radio" name="eval2" onclick="evaluation2()">3: 普通</label><br>
+                <label><input type="radio" name="eval2" onclick="evaluation2()">4: 近い</label><br>
+                <label><input type="radio" name="eval2" onclick="evaluation2()">5: 非常に近い</label>
+            </p>
+        </ol>
+
+        <p>
+            <button id="prev" onclick="prev()">前へ</button>
+            <button id="next" onclick="next()">次へ</button>
+            <button id="finish" onclick="finish()">終了</button>
+        </p>
+
+        <p id="table"></p>
+
+    </body>
+
+</html>
