@@ -20,21 +20,14 @@
                     評価の手順を説明します。
                     <h2>評価手順</h2>
                     <ol type='i'>
-                        <li>「参照音」「評価音」に対するラベルを確認する．</li>
-                        <li>「参照音」を聴く。</li>
-                        <li>「評価音」を聴く。</li>
-                        <li>「参照音」と「評価音」を聴き比べて、以下の2点について評価し，選択肢から選ぶ．
-                            <ol>
-                                <li>参照音と評価音の類似性．</li>
-                                全体を通して評価音が参照音と似ているかどうか．<br>
-                                ノイズなどの細かい音質は考慮しなくてよいです．
-                                <li>評価音からラベルに対応した音に聞こえるか．</li>
-                                評価音で発生する音が，ラベルで示された音として聞こえるかどうか．
-                            </ol>
+                        <li>はじめに「参照音」を聴く。</li>
+                        <li>その次に「評価音」を聴く。</li>
+                        <li>「参照音」と「評価音」を聴き比べて、「参照音と評価音の類似性」を評価し，以下の選択肢から選ぶ．<br>
+                            全体を通して評価音が参照音と似ているかどうかを評価してください．<br>
+                            ノイズなどの細かい音質は考慮しなくてよいです．
                         </li>
                         <li>「次へ」ボタンを押し、次の音響データの評価を行う。</li>
                         <li>すべての評価が終了したら、「終了」ボタンを押し、評価結果（CSVファイル）をダウンロードする。</li>
-                        <li>ダウンロードしたcsvファイルをslackなどで送信する，</li>
                     </ol>
                     <h2>注意事項</h2>
                     <ul>
@@ -48,40 +41,28 @@
     
             </div>     
 
-        <p id="page"></p>
-
-        <p id="label"></p>
-
-        <p id="ref"></p>
-        <p id="sub"></p>
-
-        <ol>
-            <li>参照音と比較音の類似性</li>
+            <p id="page"></p>
+        
+            <p id="label"></p>
+            
+            <p id="ref"></p>
+            <p id="sub"></p>
+    
             <p>
-                <label><input type="radio" name="eval1" onclick="evaluation1()">1: 非常に遠い</label><br>
-                <label><input type="radio" name="eval1" onclick="evaluation1()">2: 遠い</label><br>
-                <label><input type="radio" name="eval1" onclick="evaluation1()">3: 普通</label><br>
-                <label><input type="radio" name="eval1" onclick="evaluation1()">4: 近い</label><br>
-                <label><input type="radio" name="eval1" onclick="evaluation1()">5: 非常に近い</label>
+                <label><input type="radio" name="eval" onclick="evaluation()">1: 非常に差異が気になる</label><br>
+                <label><input type="radio" name="eval" onclick="evaluation()">2: 差異が気になる</label><br>
+                <label><input type="radio" name="eval" onclick="evaluation()">3: やや差異が気になる</label><br>
+                <label><input type="radio" name="eval" onclick="evaluation()">4: 差異はわかるが気にならない</label><br>
+                <label><input type="radio" name="eval" onclick="evaluation()">5: 差異がわからない</label>
             </p>
-
-            <li>評価音からラベルに対応した音に聞こえるか</li>
-            <p> 
-                <label><input type="radio" name="eval2" onclick="evaluation2()">1: 非常に遠い</label><br>
-                <label><input type="radio" name="eval2" onclick="evaluation2()">2: 遠い</label><br>
-                <label><input type="radio" name="eval2" onclick="evaluation2()">3: 普通</label><br>
-                <label><input type="radio" name="eval2" onclick="evaluation2()">4: 近い</label><br>
-                <label><input type="radio" name="eval2" onclick="evaluation2()">5: 非常に近い</label>
+    
+            <p>
+                <button id="prev" onclick="prev()">前へ</button>
+                <button id="next" onclick="next()">次へ</button>
+                <button id="finish" onclick="finish()">終了</button>
             </p>
-        </ol>
-
-        <p>
-            <button id="prev" onclick="prev()">前へ</button>
-            <button id="next" onclick="next()">次へ</button>
-            <button id="finish" onclick="finish()">終了</button>
-        </p>
-
-        <p id="table"></p>
+    
+            <p id="table"></p>
 
     </body>
 

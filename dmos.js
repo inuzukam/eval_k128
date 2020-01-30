@@ -51,54 +51,30 @@ function makeFileList()
     return files;
 }
 
-function eval1Check()
+function evalCheck()
 {
-    const c = scores1[n];
-    if ((c <= 0) || (c > eval1.length)) {
-        for (var i=0; i<eval1.length; i++) {
-            eval1[i].checked = false;
+    const c = scores[n];
+    if ((c <= 0) || (c > eval.length)) {
+        for (var i=0; i<eval.length; i++) {
+            eval[i].checked = false;
         }
     }
     else {
-        eval1[c-1].checked = true;
-    }
-}
-
-function eval2Check()
-{
-    const c = scores2[n];
-    if ((c <= 0) || (c > eval2.length)) {
-        for (var i=0; i<eval2.length; i++) {
-            eval2[i].checked = false;
-        }
-    }
-    else {
-        eval2[c-1].checked = true;
+        eval[c-1].checked = true;
     }
 }
 
 function setButton()
 {
-    if (n == scores1.length - 1) {
+    if (n == scores.length - 1) {
         document.getElementById("prev").disabled=false;
         document.getElementById("next").disabled=true;
         document.getElementById("finish").disabled=true;
-        let fin1 = false;
-        for (var i=0; i<eval1.length; i++) {
-            if (eval1[i].checked) {
-                fin1 = true;
+        for (var i=0; i<eval.length; i++) {
+            if (eval[i].checked) {
+                document.getElementById("finish").disabled=false;
                 break;
             }
-        }
-        let fin2 = false;
-        for (var i=0; i<eval2.length; i++) {
-            if (eval2[i].checked && fin1) {
-                fin2 = true;
-                break;
-            }
-        }
-        if (fin1 && fin2) {
-            document.getElementById("finish").disabled=false;
         }
     }
     else {
@@ -110,69 +86,47 @@ function setButton()
         }
         document.getElementById("next").disabled=true;
         document.getElementById("finish").disabled=true;
-        let fin1 = false;
-        for (var i=0; i<eval1.length; i++) {
-            if (eval1[i].checked) {
-                fin1 = true;
+        for (var i=0; i<eval.length; i++) {
+            if (eval[i].checked) {
+                document.getElementById("next").disabled=false;
                 break;
             }
-        }
-        let fin2 = false;
-        for (var i=0; i<eval2.length; i++) {
-            if (eval2[i].checked && fin1) {
-                fin2 = true;
-                break;
-            }
-        }
-        if (fin1 && fin2) {
-            document.getElementById("next").disabled=false;
         }
     }
 }
 
 
-function evaluation1()
+function evaluation()
 {
-    for (var i=0; i<eval1.length; i++){
-        if (eval1[i].checked){
-            scores1[n] = i+1;
+    for (var i=0; i<eval.length; i++){
+        if (eval[i].checked){
+            scores[n] = i+1;
         }
     }
     setButton();
     // showScores();
 }
 
-
-function evaluation2()
-{
-    for (var i=0; i<eval2.length; i++){
-        if (eval2[i].checked){
-            scores2[n] = i+1;
-        }
-    }
-    setButton();
-    // showScores();
-}
 
 function showScores()
 {
-    var r = Math.floor(scores1.length / 10);
+    var r = Math.floor(scores.length / 10);
     var table = "";
     for(var i=0; i<r; i++){
         for(var j=0; j<10; j++){
-            table += scores1[i*10+j] + " ";
+            table += scores[i*10+j] + " ";
         }
         table += "<br>";
     }
-    for(var j=0; j<scores1.length%10; j++){
-        table += scores1[r*10+j] + " ";
+    for(var j=0; j<scores.length%10; j++){
+        table += scores[r*10+j] + " ";
     }
     document.getElementById("table").innerHTML = table;
 }
 
 function setAudio()
 {
-    document.getElementById("page").textContent = "" + (n+1) + "/" + scores1.length;
+    document.getElementById("page").textContent = "" + (n+1) + "/" + scores.length;
     document.getElementById("ref").innerHTML = '参照音<br>'
             + '<audio src="' + file_list[n][1]
             + '" controls preload="auto">'
@@ -231,8 +185,7 @@ function init()
 {
     n = 0;
     setAudio();
-    eval1Check();
-    eval2Check();
+    evalCheck();
     setButton();
     // showScores();
 }
@@ -241,8 +194,7 @@ function next()
 {
     n++;
     setAudio();
-    eval1Check();
-    eval2Check();
+    evalCheck();
     setButton();
 }
 
@@ -250,8 +202,7 @@ function prev()
 {
     n--;
     setAudio();
-    eval1Check();
-    eval2Check();
+    evalCheck();
     setButton();
 }
 
@@ -259,7 +210,6 @@ function finish()
 {
     exportCSV();
 }
-
 
 // --------- 設定 --------- //
 
@@ -296,14 +246,12 @@ const label_list = [
 
 const sp_name = loadText(name_file);
 const method = loadText(method_file);
-// const sp_name = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14'];
-// const method = ['VQ+GL', 'VCTK', 'AudioSet', 'VCTK+AudioSet'];
+//const sp_name = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14'];
+//const method = ['VQ+GL', 'VCTK', 'AudioSet', 'VCTK+AudioSet'];
 var pairs = makePairs();
 var file_list = makeFileList();
 console.log(file_list);
 
 var n = 0;
-var eval1 = document.getElementsByName("eval1");
-var eval2 = document.getElementsByName("eval2");
-var scores1 = (new Array(file_list.length)).fill(0);
-var scores2 = (new Array(file_list.length)).fill(0);
+var eval = document.getElementsByName("eval");
+var scores = (new Array(file_list.length)).fill(0);
