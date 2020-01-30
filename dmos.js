@@ -143,8 +143,7 @@ function exportCSV()
     var csvData = "";
     for (var i=0; i<pairs.length; i++) {
         csvData += "" + pairs[i][0] + "," 
-            + pairs[i][1] + "," + scores1[i] + ","
-            + scores2[i] + "\r\n";
+            + pairs[i][1] + "," + scores[i] + "\r\n";
     }
 
     const link = document.createElement("a");
