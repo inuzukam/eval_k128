@@ -222,8 +222,8 @@ function showLabels()
     for (var i=1; i<label_list[idx].length; i++){
         labels += label_list[idx][i] + ", "
     }
-    document.getElementById("ラベル").textContent = 
-        "Label : " + labels;
+    document.getElementById("label").textContent = 
+        "ラベル : " + labels;
 }
 
 
